@@ -1,0 +1,82 @@
+﻿<Window x:Class="Puzzle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle"
+        mc:Ignorable="d"
+        Title="Puzzle" Height="720" Width="1280"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu -->
+        
+        <Menu Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <MenuItem Header="Images">
+                <MenuItem Header="Beach" Click="BeachImage_Click"/>
+                <MenuItem Header="Tiger" Click="TigerImage_Click"/>
+                <MenuItem Header="Road" Click="RoadImage_Click"/>
+                <MenuItem Header="Car" Click="CarImage_Click"/>
+                <MenuItem Header="Hogwart" Click="HogwartImage_Click"/>
+                <MenuItem Header="Mountains" Click="MountainsImage_Click"/>
+            </MenuItem>
+            <MenuItem Header="Difficulty">
+                <MenuItem Header="Easy" Click="EasyDifficulty_Click"/>
+                <MenuItem Header="Medium" Click="MediumDifficulty_Click"/>
+                <MenuItem Header="Hard" Click="HardDifficulty_Click"/>
+            </MenuItem>
+            <MenuItem Header="Records">
+                <MenuItem Header="Show Actual Records" Click="ShowActualRecords_Click"/>
+                <MenuItem Header="Delete Record Data" Click="DeleteRecordData_Click"/>
+            </MenuItem>
+            <MenuItem Header="About">
+                <MenuItem Header="Author Info" Click="AboutMenu_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Pierwsza kolumna z canvasem do wyświetlania fragmentów obrazu -->
+        <Canvas x:Name="FirstColumnCanvas" Grid.Row="1" Grid.Column="0" Margin="29,10,10,25" Grid.RowSpan="2" />
+
+        <!-- Druga kolumna z orginalnym obrazem -->
+        <Grid Grid.Column="1" Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Image Name="GameImage" Grid.Row="0" Source="Images/Beach.jpeg" Stretch="Uniform" Margin="10"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="22*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Moves:" Margin="10,10,10,10" FontSize="25"/>
+                <TextBlock Name="MovesTextBlock" Text="0" Margin="104,10,10,10" FontSize="25" Grid.ColumnSpan="2"/>
+                <TextBlock Name="TimerTextBlock" Grid.Column="2" Text="00:00:00" Margin="10,10,10,10" FontSize="25"/>
+            </Grid>
+
+            <Button Grid.Row="2" Content="New Game" Margin="10" HorizontalAlignment="Center" Width="175" Height="45" Click="NewGameButton_Click"/>
+        </Grid>
+
+        <!-- Status bar -->
+        
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <StatusBar>
+                <TextBlock x:Name="statusBarText" Text="Image Name - Difficulty" />
+            </StatusBar>
+        </Grid>
+    </Grid>
+</Window>
